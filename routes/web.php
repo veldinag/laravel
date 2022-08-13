@@ -40,7 +40,7 @@ Route::get('/info', function () {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Project info</title>
+    <title>Project information</title>
 </head>
 <body>
     <h1>Project Info</h1>
