@@ -55,7 +55,7 @@ Route::get('/news', function () {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>News</title>
+    <title>All news</title>
 </head>
 <body>
     <h1>News</h1>
