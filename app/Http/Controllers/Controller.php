@@ -12,30 +12,51 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function getNews(int $id = null): array
+    public function getCategories(): array
+    {
+        return ['Show all', 'Politics', 'Society', 'Economy', 'Culture', 'Sport', 'Technologies'];
+    }
+
+    public function getNews(): array
     {
         $news = [];
         $faker = Factory::create();
 
-        if($id) {
-            return [
-                'title' => $faker->jobTitle(),
-                'author' => $faker->userName(),
-                'status' => 'DRAFT',
-                'description' => $faker->text(100),
-                'created_at' => now('Europe/Moscow')
-            ];
-        }
+        $j = 1;
 
-        for($i=1; $i<10; $i++) {
+        for($i=1; $i<37; $i++) {
             $news[$i] = [
                 'title' => $faker->jobTitle(),
                 'author' => $faker->userName(),
                 'status' => 'DRAFT',
-                'description' => $faker->text(100),
-                'created_at' => now('Europe/Moscow')
+                'description' => $faker->text(200),
+                'created_at' => now('Europe/Moscow'),
+                'category_id' => $j
             ];
+            $j++;
+            if ($j > 6) $j = 1;
         }
+
         return $news;
+    }
+
+    public function getNewsById(int $id): array
+    {
+        $news = $this -> getNews();
+        return $news[$id];
+    }
+
+    public function getNewsByCategory(int $id): array
+    {
+        $news = $this -> getNews();
+        $result = [];
+        $i=1;
+        foreach ($news as $item) {
+            if ($item['category_id'] == $id) {
+                $result[$i] = $item;
+                $i++;
+            }
+        }
+        return $result;
     }
 }
