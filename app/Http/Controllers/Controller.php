@@ -21,6 +21,7 @@ class Controller extends BaseController
     {
         $news = [];
         $faker = Factory::create();
+        $categories = $this->getCategories();
 
         $j = 1;
 
@@ -29,9 +30,11 @@ class Controller extends BaseController
                 'title' => $faker->jobTitle(),
                 'author' => $faker->userName(),
                 'status' => 'DRAFT',
-                'description' => $faker->text(200),
+                'description' => $faker->text(100),
+                'text' => $faker->text(1000),
                 'created_at' => now('Europe/Moscow'),
-                'category_id' => $j
+                'category_id' => $j,
+                'category' => $categories[$j]
             ];
             $j++;
             if ($j > 6) $j = 1;

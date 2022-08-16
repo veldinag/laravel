@@ -40,18 +40,15 @@
                                 <span class="icon-bar"></span>
                             </button>
 
-                            <a href="#" class="navbar-brand brand"> Smart<span class="blue">Pack</span></a>
+                            <a href="#" class="navbar-brand brand"> News<span class="blue">Aggregator</span></a>
                         </div>
 
                         <div id="navbar-collapse-02" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#">Home</a></li>
-                                <li><a href="#">Services</a></li>
+                                <li><a href="{{ route('category.index') }}">Categories</a></li>
                                 <li><a href="#">About Us</a></li>
-                                <li><a href="#">Showcase</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Pricing</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="">Contact</a></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
 
@@ -68,245 +65,7 @@
 
         <div class="container">
 
-            <div class="row text-center margin-bottom-60">
-
-                <div class="col-md-8 col-md-offset-2">
-
-                    <h2 class="section-title-white editContent">News &amp; Announcements</h2>
-
-                    <div class="separator_wrapper">
-                        <div class="separator_first_circle">
-                            <div class="separator_second_circle">
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="section-subtitle-white editContent">There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration, by injected humour, or new randomised
-                        words which don't look believable.</h3>
-
-                </div><!-- /col-md-8 -->
-
-            </div><!-- /.row -->
-
-            <div class="row">
-
-                <div class="col-md-4 blog_item1">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a class="popup2" href="{{ asset('assets/img/blog1.jpeg') }}"><img src="{{ asset('assets/img/blog1.jpeg') }}" class="width-100"
-                                                                           alt="pic"><span class="eye-wrapper"><span
-                                        class="fa fa-eye eye-icon" style="font-size: 38px;"></span></span></a>
-                        </div>
-                    </div>
-                    <!--end popup image -->
-
-                    <!--begin blog_item_inner -->
-                    <div class="blog_item_inner">
-
-                        <h3 class="blog_title"><a href="#" class="editContent">Lorem ipsum sit netsum amet.</a></h3>
-
-                        <a href="#" class="blog_icons editContent"><span class="fa fa-user"></span> By John Doe</a>
-
-                        <a href="#" class="blog_icons editContent last"><span class="fa fa-tags"></span> Marketing,
-                            Design</a>
-
-                        <p class="editContent">Quis autem velis reprehenderit etims quiste voluptate velit esse quam
-                            nihil ets illum sedit consequatur quia voluptas sit aspernatura.</p>
-
-                        <a href="" class="btn button_blog">Read More</a>
-
-                        <a href="#" class="blog_comments_icon"><span class="fa fa-comment-o"></span> <span
-                                class="editContent">8</span></a>
-
-                    </div>
-                    <!--end blog_item_inner -->
-
-                </div><!-- /.col-md-4 -->
-
-                <div class="col-md-4 blog_item1">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a class="popup2" href="{{ asset('assets/img/blog2.jpeg') }}"><img src="{{ asset('assets/img/blog2.jpeg') }}" class="width-100"
-                                                                           alt="pic"><span class="eye-wrapper"><span
-                                        class="fa fa-eye eye-icon" style="font-size: 38px;"></span></span></a>
-                        </div>
-                    </div>
-                    <!--end popup image -->
-
-                    <!--begin blog_item_inner -->
-                    <div class="blog_item_inner">
-
-                        <h3 class="blog_title"><a href="#" class="editContent">Lorem ipsum sit netsum amet.</a></h3>
-
-                        <a href="#" class="blog_icons editContent"><span class="fa fa-user"></span> By John Doe</a>
-
-                        <a href="#" class="blog_icons editContent last"><span class="fa fa-tags"></span> Marketing,
-                            Design</a>
-
-                        <p class="editContent">Quis autem velis reprehenderit etims quiste voluptate velit esse quam
-                            nihil ets illum sedit consequatur quia voluptas sit aspernatura.</p>
-
-                        <a href="" class="btn button_blog">Read More</a>
-
-                        <a href="#" class="blog_comments_icon"><span class="fa fa-comment-o"></span> <span
-                                class="editContent">4</span></a>
-
-                    </div>
-                    <!--end blog_item_inner -->
-
-                </div><!-- /.col-md-4 -->
-
-                <div class="col-md-4 blog_item1">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a class="popup2" href="{{ asset('assets/img/blog3.jpeg') }}"><img src="{{ asset('assets/img/blog3.jpeg') }}" class="width-100"
-                                                                           alt="pic"><span class="eye-wrapper"><span
-                                        class="fa fa-eye eye-icon" style="font-size: 38px;"></span></span></a>
-                        </div>
-                    </div>
-                    <!--end popup image -->
-
-                    <!--begin blog_item_inner -->
-                    <div class="blog_item_inner">
-
-                        <h3 class="blog_title"><a href="#" class="editContent">Lorem ipsum sit netsum amet.</a></h3>
-
-                        <a href="#" class="blog_icons editContent"><span class="fa fa-user"></span> By John Doe</a>
-
-                        <a href="#" class="blog_icons editContent last"><span class="fa fa-tags"></span> Marketing,
-                            Design</a>
-
-                        <p class="editContent">Quis autem velis reprehenderit etims quiste voluptate velit esse quam
-                            nihil ets illum sedit consequatur quia voluptas sit aspernatura.</p>
-
-                        <a href="" class="btn button_blog">Read More</a>
-
-                        <a href="#" class="blog_comments_icon"><span class="fa fa-comment-o"></span> <span
-                                class="editContent">5</span></a>
-
-                    </div>
-                    <!--end blog_item_inner -->
-
-                </div><!-- /.col-md-4 -->
-
-            </div><!-- ./row -->
-
-            <div class="row">
-
-                <div class="col-md-4 blog_item1">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a class="popup2" href="{{ asset('assets/img/blog4.jpeg') }}"><img src="{{ asset('assets/img/blog4.jpeg') }}" class="width-100"
-                                                                           alt="pic"><span class="eye-wrapper"><span
-                                        class="fa fa-eye eye-icon" style="font-size: 38px;"></span></span></a>
-                        </div>
-                    </div>
-                    <!--end popup image -->
-
-                    <!--begin blog_item_inner -->
-                    <div class="blog_item_inner">
-
-                        <h3 class="blog_title"><a href="#" class="editContent">Lorem ipsum sit netsum amet.</a></h3>
-
-                        <a href="#" class="blog_icons editContent"><span class="fa fa-user"></span> By John Doe</a>
-
-                        <a href="#" class="blog_icons editContent last"><span class="fa fa-tags"></span> Marketing,
-                            Design</a>
-
-                        <p class="editContent">Quis autem velis reprehenderit etims quiste voluptate velit esse quam
-                            nihil ets illum sedit consequatur quia voluptas sit aspernatura.</p>
-
-                        <a href="" class="btn button_blog">Read More</a>
-
-                        <a href="#" class="blog_comments_icon"><span class="fa fa-comment-o"></span> <span
-                                class="editContent">3</span></a>
-
-                    </div>
-                    <!--end blog_item_inner -->
-
-                </div><!-- /.col-md-4 -->
-
-                <div class="col-md-4 blog_item1">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a class="popup2" href="{{ asset('assets/img/blog5.jpeg') }}"><img src="{{ asset('assets/img/blog5.jpeg') }}" class="width-100"
-                                                                           alt="pic"><span class="eye-wrapper"><span
-                                        class="fa fa-eye eye-icon" style="font-size: 38px;"></span></span></a>
-                        </div>
-                    </div>
-                    <!--end popup image -->
-
-                    <!--begin blog_item_inner -->
-                    <div class="blog_item_inner">
-
-                        <h3 class="blog_title"><a href="#" class="editContent">Lorem ipsum sit netsum amet.</a></h3>
-
-                        <a href="#" class="blog_icons editContent"><span class="fa fa-user"></span> By John Doe</a>
-
-                        <a href="#" class="blog_icons editContent last"><span class="fa fa-tags"></span> Marketing,
-                            Design</a>
-
-                        <p class="editContent">Quis autem velis reprehenderit etims quiste voluptate velit esse quam
-                            nihil ets illum sedit consequatur quia voluptas sit aspernatura.</p>
-
-                        <a href="" class="btn button_blog">Read More</a>
-
-                        <a href="#" class="blog_comments_icon"><span class="fa fa-comment-o"></span> <span
-                                class="editContent">9</span></a>
-
-                    </div>
-                    <!--end blog_item_inner -->
-
-                </div><!-- /.col-md-4 -->
-
-                <div class="col-md-4 blog_item1">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a class="popup2" href="{{ asset('assets/img/blog6.jpeg') }}"><img src="{{ asset('assets/img/blog6.jpeg') }}" class="width-100"
-                                                                           alt="pic"><span class="eye-wrapper"><span
-                                        class="fa fa-eye eye-icon" style="font-size: 38px;"></span></span></a>
-                        </div>
-                    </div>
-                    <!--end popup image -->
-
-                    <!--begin blog_item_inner -->
-                    <div class="blog_item_inner">
-
-                        <h3 class="blog_title"><a href="#" class="editContent">Lorem ipsum sit netsum amet.</a></h3>
-
-                        <a href="#" class="blog_icons editContent"><span class="fa fa-user"></span> By John Doe</a>
-
-                        <a href="#" class="blog_icons editContent last"><span class="fa fa-tags"></span> Marketing,
-                            Design</a>
-
-                        <p class="editContent">Quis autem velis reprehenderit etims quiste voluptate velit esse quam
-                            nihil ets illum sedit consequatur quia voluptas sit aspernatura.</p>
-
-                        <a href="" class="btn button_blog">Read More</a>
-
-                        <a href="#" class="blog_comments_icon"><span class="fa fa-comment-o"></span> <span
-                                class="editContent">1</span></a>
-
-                    </div>
-                    <!--end blog_item_inner -->
-
-                </div><!-- /.col-md-4 -->
-
-            </div><!-- ./row -->
-
+            @yield('content')
 
         </div><!-- /.container -->
 
@@ -319,8 +78,7 @@
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3 text-center social">
 
-                        <p><span class="editContent">Copyright © 2015 SmartPack. Designed and Developed by</span> <a
-                                href="#" class="author">Bogdan</a>.</p>
+                        <p><span class="editContent">Copyright © 2022 Laravel. Designed and Developed by Veldin Alex</span></p>
 
                         <a href="#"><span class="fa fa-twitter"></span></a>
                         <a href="#"><span class="fa fa-pinterest"></span></a>
