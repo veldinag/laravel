@@ -1,82 +1,54 @@
 @extends('layouts.main')
 @section('content')
 
-    <div class="row text-center margin-bottom-60">
+    <section class="padding-110px-tb xs-padding-60px-tb bg-white builder-bg blog-style2" id="blog-section3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <h2 class="section-title-large sm-section-title-medium xs-section-title-large text-dark-gray font-weight-700 alt-font margin-three-bottom xs-margin-fifteen-bottom tz-text">LATEST NEWS</h2>
+                    <div class="text-medium width-60 margin-lr-auto md-width-70 sm-width-100 tz-text margin-thirteen-bottom  xs-margin-nineteen-bottom">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+                </div>
+            </div>
 
-        <div class="col-md-8 col-md-offset-2">
+            @php
+                $i = 1;
+            @endphp
 
-            <h2 class="section-title-white editContent">News</h2>
+            @forelse($newsList as $key => $news)
+                @if(($i % 3) == 1)
+                    <div class="row">
+                @endif
 
-            <div class="separator_wrapper">
-                <div class="separator_first_circle">
-                    <div class="separator_second_circle">
+                @php
+                    $r = rand(1, 3);
+                @endphp
+
+                <div class="col-md-4 col-sm-4 col-xs-12 xs-margin-nineteen-bottom">
+                    <div class="post-thumbnail overflow-hidden margin-twelve-bottom">
+                        <a href="{{ route('news.show', ['id' => $key]) }}"><img src="{{asset('assets/img/spa-blog-img0'.$r.'.jpeg')}}" data-img-size="(W)800px X (H)507px" alt=""></a>
+                    </div>
+                    <div class="post-details no-margin-lr no-margin-bottom">
+                        <a href="{{ route('newslist.index', ['cat_id' => $news['category_id']]) }}" class="tz-text btn btn-very-small bg-cyan border-radius-0 text-white alt-font margin-nine-bottom font-weight-500">{{ $news['category'] }}</a>
+                        <a href="{{ route('news.show', ['id' => $key]) }}" class="tz-text text-dark-gray text-medium alt-font font-weight-600 display-block margin-four-bottom md-text-medium">{{ $news['title'] }}</a>
+                        <div class="text-medium tz-text"><p>{!! $news['description'] !!}</p></div>
+                        <div class="separator-line-full bg-middle-gray margin-ten-bottom tz-background-color"></div>
+                        <div class="text-extra-small alt-font"><a href="#" class="tz-text text-medium-gray">15 SEPTEMBER 2015</a>   /   <span class="tz-text">POSTED BY</span> <a href="#" class="tz-text text-medium-gray">{{ $news['author'] }}</a></div>
                     </div>
                 </div>
-            </div>
 
-            <h3 class="section-subtitle-white editContent">There are many variations of passages of Lorem Ipsum
-                available, but the majority have suffered alteration, by injected humour, or new randomised
-                words which don't look believable.</h3>
+                @if(($i % 3) == 0)
+                    </div><br><!-- ./row -->
+                @endif
 
-        </div><!-- /col-md-8 -->
+                @php
+                    $i++;
+                @endphp
 
-    </div><!-- /.row -->
+            @empty
+                <h2>No news</h2>
+            @endforelse
 
-    @php
-        $i = 1;
-    @endphp
+        </div>
+    </section>
 
-    @forelse($newsList as $key => $news)
-        @if(($i % 2) == 1)
-            <div class="row">
-        @endif
-
-        @php
-             $r = rand(1, 6);
-        @endphp
-
-        <div class="col-md-6 blog_item1">
-
-            <!--begin popup image -->
-            <div class="popup-wrapper">
-                <div class="popup-gallery">
-                    <a class="popup2" href="{{ route('news.show', ['id' => $key]) }}"><img src="{{ asset('assets/img/blog'.$r.'.jpeg') }}" class="width-100"
-                                                                                       alt="pic"><span class="eye-wrapper"><span
-                                class="fa fa-eye eye-icon" style="font-size: 38px;"></span></span></a>
-                </div>
-            </div>
-            <!--end popup image -->
-
-            <!--begin blog_item_inner -->
-            <div class="blog_item_inner">
-
-                <h3 class="blog_title">{{ $news['title'] }}</h3>
-
-                <a href="#" class="blog_icons editContent"><span class="fa fa-user"></span> By {{ $news['author'] }}</a>
-
-                <a href="{{ route('newslist.index', ['cat_id' => $news['category_id']]) }}" class="blog_icons editContent last"><span class="fa fa-tags"></span> {{ $news['category'] }}</a>
-
-                <p class="editContent">{!! $news['description'] !!}</p>
-
-                <a href="{{ route('news.show', ['id' => $key]) }}" class="btn button_blog">Read More</a>
-
-                <a href="#" class="blog_comments_icon"><span class="fa fa-comment-o"></span> <span
-                        class="editContent">8</span></a>
-
-            </div>
-            <!--end blog_item_inner -->
-
-        </div><!-- /.col-md-4 -->
-
-    @if(($i % 2) == 0)
-         </div><!-- ./row -->
-    @endif
-
-    @php
-        $i++;
-    @endphp
-
-    @empty
-        <h2>No news</h2>
-    @endforelse
 @endsection
