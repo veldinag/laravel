@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title') Home @parent @endsection
 @section('content')
 
 <div id="page" class="page">

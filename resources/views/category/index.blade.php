@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title') Categories @parent @endsection
 @section('content')
     <div id="page" class="page">
         <section class="bg-white builder-bg padding-110px-tb xs-padding-60px-tb" id="portfolios-section6">
@@ -22,10 +23,10 @@
                                         @php
                                             $r = rand(4, 8);
                                         @endphp
-                                        @if($key != 0)
+                                        @if($key != 0)g
                                         <li class="xs-no-padding">
                                             <figure>
-                                                <div class="gallery-img lightbox-gallery">
+                                                <div>
                                                     <a href="{{ route('newslist.index', ['cat_id' => $key]) }}" title=""><img src="{{asset('assets/img/agency-work-0'.$r.'.jpeg')}}" id="tz-bg-110" data-img-size="(W)800px X (H)650px" alt=""></a>
                                                 </div>
                                                 <figcaption>

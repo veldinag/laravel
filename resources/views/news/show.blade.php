@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title') News @parent @endsection
 @section('content')
 
     <div id="page" class="page">

@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title') News List @parent @endsection
 @section('content')
 
     <section class="padding-110px-tb xs-padding-60px-tb bg-white builder-bg blog-style2" id="blog-section3">

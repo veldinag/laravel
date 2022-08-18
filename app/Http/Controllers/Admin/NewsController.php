@@ -14,7 +14,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.news.index', [
+            'newsList' => $this->getNews()
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.news.create');
     }
 
     /**
@@ -55,9 +57,9 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('admin.news.edit');
     }
 
     /**
