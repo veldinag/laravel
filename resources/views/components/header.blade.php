@@ -5,7 +5,7 @@
             <div class="row">
                 <!-- logo -->
                 <div class="col-md-3 col-sm-4 col-xs-9">
-                    <a href="#home" class="inner-link"><img alt="" src="{{asset('assets/img/logo.png')}}" data-img-size="(W)163px X (H)39px"></a>
+                    <a href="{{ route('greeting.index') }}" class="inner-link"><img alt="" src="{{asset('assets/img/logo.png')}}" data-img-size="(W)163px X (H)39px"></a>
                 </div>
                 <!-- end logo -->
                 <div class="col-md-9 col-sm-8 col-xs-3 position-inherit">

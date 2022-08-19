@@ -6,7 +6,7 @@
     <title>@section('title') :: NewsAggregator @show</title>
 
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/owl.transitions.css')}}">

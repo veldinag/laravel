@@ -24,7 +24,7 @@
                 <td>{{$news['status']}}</td>
                 <td>{{$news['created_at']->format('d-m-Y H:i')}}</td>
                 <td>
-                    <a href="#">Edit</a>&nbsp;
+                    <a href="{{route('admin.news.edit', ['news'=>$key])}}">Edit</a>&nbsp;
                     <a href="#" style="color: red;">Delete</a>
                 </td>
             </tr>
