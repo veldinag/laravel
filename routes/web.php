@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\UnloadingOrderController;
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
@@ -24,6 +26,10 @@ Route::get('/greeting', [GreetingController::class, 'index'])
 
 Route::get('/category', [CategoryController::class, 'index'])
     ->name('category.index');
+
+Route::resource('/feedback', FeedbackController::class);
+
+Route::resource('/unloadingorder', UnloadingOrderController::class);
 
 Route::get('/newslist/{cat_id}', [NewsController::class, 'index'])
     ->where('cat_id', '\d+')
