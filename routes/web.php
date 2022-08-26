@@ -24,8 +24,8 @@ Route::get('/', function () {
 Route::get('/greeting', [GreetingController::class, 'index'])
     ->name('greeting.index');
 
-Route::get('/category', [CategoryController::class, 'index'])
-    ->name('category.index');
+Route::get('/categories', [CategoryController::class, 'index'])
+    ->name('categories.index');
 
 Route::resource('/feedback', FeedbackController::class);
 
