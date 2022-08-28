@@ -26,15 +26,16 @@ class NewsSeeder extends Seeder
     {
         $faker = Factory::create();
         $data = [];
-
-        for ($i=0; $i<10; $i++) {
+        for ($i=0; $i<120; $i++) {
             $data[$i] = [
-                'category_id' => 1,
+                'category_id' => rand(1, 6),
+                'source_id' => rand(1, 20),
                 'title' => $faker->jobTitle(),
                 'author' => $faker->userName(),
                 'image' => $faker->imageUrl(),
                 'status' => News::DRAFT,
-                'description' => $faker->text(100),
+                'description' => $faker->sentence(25),
+                'text' => $faker->text(1000),
                 'created_at' => now('Europe/Moscow')
             ];
         }

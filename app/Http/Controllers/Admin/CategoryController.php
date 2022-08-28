@@ -42,7 +42,6 @@ class CategoryController extends Controller
         $request->validate([
            'title' => ['required', 'string', 'min:5', 'max:255']
         ]);
-        //dd($request->query());
         return response()->json($request->only(['title', 'description']));
     }
 
@@ -63,7 +62,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         return view('admin.categories.edit');
     }

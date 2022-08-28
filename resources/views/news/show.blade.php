@@ -15,16 +15,16 @@
                         <div class="display-table-cell-vertical-middle">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <h2 class="title-extra-large alt-font sm-section-title-medium xs-title-extra-large text-dark-gray margin-five-bottom xs-margin-ten-bottom tz-text">{{ $news['title'] }}</h2>
-                                    <span class="text-extra-large sm-text-extra-large font-weight-300 margin-ten-bottom xs-margin-fifteen-bottom display-block tz-text">{{ $news['text'] }}</span>
+                                    <h2 class="title-extra-large alt-font sm-section-title-medium xs-title-extra-large text-dark-gray margin-five-bottom xs-margin-ten-bottom tz-text">{{ $news->title }}</h2>
+                                    <span class="text-extra-large sm-text-extra-large font-weight-300 margin-ten-bottom xs-margin-fifteen-bottom display-block tz-text">{{ $news->text }}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <ul class="list-style-none">
-                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Author: {{ $news['author'] }}</span></li>
-                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Category: {{ $news['category'] }}</span></li>
-                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Created at: {{ $news['created_at']->format('d-m-Y H:i') }}</span></li>
+                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Author: {{ $news->author }}</span></li>
+                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Category: {{ $news->category }}</span></li>
+                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Created at: {{ date('d.m.Y m:H', strtotime($news->created_at)) }}</span></li>
                                     </ul>
                                 </div>
                             </div>

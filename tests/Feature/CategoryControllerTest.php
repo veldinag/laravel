@@ -15,14 +15,14 @@ class CategoryControllerTest extends TestCase
      */
     public function test_category_successful_page()
     {
-        $response = $this->get(route('category.index'));
+        $response = $this->get(route('categories.index'));
 
         $response->assertStatus(200);
     }
 
     public function test_category_page_has_params()
     {
-        $response = $this->get(route('category.index'));
+        $response = $this->get(route('categories.index'));
 
         $response->assertViewHasAll(['categoriesList']);
     }

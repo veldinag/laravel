@@ -34,7 +34,6 @@ class Controller extends BaseController
                 'text' => $faker->text(1000),
                 'created_at' => now('Europe/Moscow'),
                 'category_id' => $j,
-                'category' => $categories[$j]
             ];
             $j++;
             if ($j > 6) $j = 1;

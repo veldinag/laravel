@@ -19,22 +19,20 @@
                                 <div class="tab-content">
                                     <ul class="masonry-items grid work-gallery grid">
 
-                                        @foreach($categoriesList as $key => $category)
+                                        @foreach($categoriesList as $category)
                                         @php
                                             $r = rand(4, 8);
                                         @endphp
-                                        @if($key != 0)g
                                         <li class="xs-no-padding">
                                             <figure>
                                                 <div>
-                                                    <a href="{{ route('newslist.index', ['cat_id' => $key]) }}" title=""><img src="{{asset('assets/img/agency-work-0'.$r.'.jpeg')}}" id="tz-bg-110" data-img-size="(W)800px X (H)650px" alt=""></a>
+                                                    <a href="{{ route('newslist.index', ['cat_id' => $category->id]) }}" title=""><img src="{{asset('assets/img/agency-work-0'.$r.'.jpeg')}}" id="tz-bg-110" data-img-size="(W)800px X (H)650px" alt=""></a>
                                                 </div>
                                                 <figcaption>
-                                                    <h3 class="text-medium alt-font"><a href="{{ route('newslist.index', ['cat_id' => $key]) }}" class="text-dark-gray tz-text" id="tz-slider-text246">{{ $category }}</a></h3>
+                                                    <h3 class="text-medium alt-font"><a href="{{ route('newslist.index', ['cat_id' => $category->id]) }}" class="text-dark-gray tz-text" id="tz-slider-text246">{{ $category->title }}</a></h3>
                                                 </figcaption>
                                             </figure>
                                         </li>
-                                        @endif
 
                                         @endforeach
                                             <li class="xs-no-padding">
@@ -43,7 +41,7 @@
                                                         <a href="{{ route('newslist.index', ['cat_id' => 0]) }}" title=""><img src="{{asset('assets/img/agency-work-0'.$r.'.jpeg')}}" id="tz-bg-110" data-img-size="(W)800px X (H)650px" alt=""></a>
                                                     </div>
                                                     <figcaption>
-                                                        <h3 class="text-medium alt-font"><a href="{{ route('newslist.index', ['cat_id' => 0]) }}" class="text-dark-gray tz-text" id="tz-slider-text246">{{ $categoriesList[0] }}</a></h3>
+                                                        <h3 class="text-medium alt-font"><a href="{{ route('newslist.index', ['cat_id' => 0]) }}" class="text-dark-gray tz-text" id="tz-slider-text246">Show all</a></h3>
                                                     </figcaption>
                                                 </figure>
                                             </li>

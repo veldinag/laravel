@@ -24,7 +24,7 @@
                                 <a class="inner-link" href="{{ route('newslist.index', ['cat_id' => 0]) }}">NEWS</a>
                             </li>
                             <li class="propClone">
-                                <a class="inner-link" href="{{ route('category.index') }}">CATEGORIES</a>
+                                <a class="inner-link" href="{{ route('categories.index') }}">CATEGORIES</a>
                             </li>
                             <li class="propClone">
                                 <a class="inner-link" href="{{route('feedback.index')}}">FEEDBACK</a>

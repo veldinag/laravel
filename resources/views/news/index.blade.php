@@ -15,7 +15,7 @@
                 $i = 1;
             @endphp
 
-            @forelse($newsList as $key => $news)
+            @forelse($newsList as $news)
                 @if(($i % 3) == 1)
                     <div class="row">
                 @endif
@@ -26,19 +26,19 @@
 
                 <div class="col-md-4 col-sm-4 col-xs-12 xs-margin-nineteen-bottom">
                     <div class="post-thumbnail overflow-hidden margin-twelve-bottom">
-                        <a href="{{ route('news.show', ['id' => $key]) }}"><img src="{{asset('assets/img/spa-blog-img0'.$r.'.jpeg')}}" data-img-size="(W)800px X (H)507px" alt=""></a>
+                        <a href="{{ route('news.show', ['id' => $news->id]) }}"><img src="{{asset('assets/img/spa-blog-img0'.$r.'.jpeg')}}" data-img-size="(W)800px X (H)507px" alt=""></a>
                     </div>
                     <div class="post-details no-margin-lr no-margin-bottom">
-                        <a href="{{ route('newslist.index', ['cat_id' => $news['category_id']]) }}" class="tz-text btn btn-very-small bg-cyan border-radius-0 text-white alt-font margin-nine-bottom font-weight-500">{{ $news['category'] }}</a>
-                        <a href="{{ route('news.show', ['id' => $key]) }}" class="tz-text text-dark-gray text-medium alt-font font-weight-600 display-block margin-four-bottom md-text-medium">{{ $news['title'] }}</a>
-                        <div class="text-medium tz-text"><p>{!! $news['description'] !!}</p></div>
+                        <a href="{{ route('newslist.index', ['cat_id' => $news->category_id]) }}" class="tz-text btn btn-very-small bg-cyan border-radius-0 text-white alt-font margin-nine-bottom font-weight-500">{{ $news->category }}</a>
+                        <a href="{{ route('news.show', ['id' => $news->id]) }}" class="tz-text text-dark-gray text-medium alt-font font-weight-600 display-block margin-four-bottom md-text-medium">{{ $news->title }}</a>
+                        <div class="text-medium tz-text"><p>{!! $news->description !!}</p></div>
                         <div class="separator-line-full bg-middle-gray margin-ten-bottom tz-background-color"></div>
-                        <div class="text-extra-small alt-font"><a href="#" class="tz-text text-medium-gray">15 SEPTEMBER 2015</a>   /   <span class="tz-text">POSTED BY</span> <a href="#" class="tz-text text-medium-gray">{{ $news['author'] }}</a></div>
+                        <div class="text-extra-small alt-font"><a href="#" class="tz-text text-medium-gray">{{ date('d.m.Y m:H', strtotime($news->created_at)) }}</a>   /   <span class="tz-text">POSTED BY</span> <a href="#" class="tz-text text-medium-gray">{{ $news->author }}</a></div>
                     </div>
                 </div>
 
                 @if(($i % 3) == 0)
-                    </div><br><!-- ./row -->
+                    </div><br>
                 @endif
 
                 @php

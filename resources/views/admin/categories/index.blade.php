@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{$category->id}}</td>
                     <td>{{$category->title}}</td>
-                    <td>{{$category->created_at}}</td>
+                    <td>{{date('d.m.Y m:H', strtotime($category->created_at))}}</td>
                     <td>
                         <a href="{{route('admin.categories.edit', ['category'=>$category->id])}}">Edit</a>&nbsp;
                         <a href="#" style="color: red;">Delete</a>
