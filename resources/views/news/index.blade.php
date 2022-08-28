@@ -33,7 +33,7 @@
                         <a href="{{ route('news.show', ['id' => $news->id]) }}" class="tz-text text-dark-gray text-medium alt-font font-weight-600 display-block margin-four-bottom md-text-medium">{{ $news->title }}</a>
                         <div class="text-medium tz-text"><p>{!! $news->description !!}</p></div>
                         <div class="separator-line-full bg-middle-gray margin-ten-bottom tz-background-color"></div>
-                        <div class="text-extra-small alt-font"><a href="#" class="tz-text text-medium-gray">{{ $news->created_at }}</a>   /   <span class="tz-text">POSTED BY</span> <a href="#" class="tz-text text-medium-gray">{{ $news->author }}</a></div>
+                        <div class="text-extra-small alt-font"><a href="#" class="tz-text text-medium-gray">{{ date('d.m.Y m:H', strtotime($news->created_at)) }}</a>   /   <span class="tz-text">POSTED BY</span> <a href="#" class="tz-text text-medium-gray">{{ $news->author }}</a></div>
                     </div>
                 </div>
 

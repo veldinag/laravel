@@ -22,7 +22,7 @@
                 <td>{{$news->author}}</td>
                 <td>{{$news->category}}</td>
                 <td>{{$news->status}}</td>
-                <td>{{$news->created_at}}</td>
+                <td>{{date('d.m.Y m:H', strtotime($news->created_at))}}</td>
                 <td>
                     <a href="{{route('admin.news.edit', ['news'=>$news->id])}}">Edit</a>&nbsp;
                     <a href="#" style="color: red;">Delete</a>
