@@ -23,15 +23,38 @@ class CategorySeeder extends Seeder
     protected function getData(): array
     {
         $faker = Factory::create();
-        $data = [];
-
-        for ($i=0; $i<10; $i++) {
-            $data[$i] = [
-                'title' => $faker->jobTitle(),
+        $created_at = now('Europe/Moscow');
+        return [
+            [
+                'title' => 'Politics',
                 'description' => $faker->text(100),
-                'created_at' => now('Europe/Moscow')
-            ];
-        }
-        return $data;
+                'created_at' => $created_at
+            ],
+            [
+                'title' => 'Society',
+                'description' => $faker->text(100),
+                'created_at' => $created_at
+            ],
+            [
+                'title' => 'Economy',
+                'description' => $faker->text(100),
+                'created_at' => $created_at
+            ],
+            [
+                'title' => 'Culture',
+                'description' => $faker->text(100),
+                'created_at' => $created_at
+            ],
+            [
+                'title' => 'Sport',
+                'description' => $faker->text(100),
+                'created_at' => $created_at
+            ],
+            [
+                'title' => 'Technologies',
+                'description' => $faker->text(100),
+                'created_at' => $created_at
+            ]
+        ];
     }
 }

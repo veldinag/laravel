@@ -15,16 +15,16 @@
             </tr>
             </thead>
             <tbody>
-            @forelse($newsList as $key => $news)
+            @forelse($newsList as $news)
             <tr>
-                <td>{{$key}}</td>
-                <td>{{$news['title']}}</td>
-                <td>{{$news['author']}}</td>
-                <td>{{$news['category']}}</td>
-                <td>{{$news['status']}}</td>
-                <td>{{$news['created_at']->format('d-m-Y H:i')}}</td>
+                <td>{{$news->id}}</td>
+                <td>{{$news->title}}</td>
+                <td>{{$news->author}}</td>
+                <td>{{$news->category}}</td>
+                <td>{{$news->status}}</td>
+                <td>{{$news->created_at}}</td>
                 <td>
-                    <a href="{{route('admin.news.edit', ['news'=>$key])}}">Edit</a>&nbsp;
+                    <a href="{{route('admin.news.edit', ['news'=>$news->id])}}">Edit</a>&nbsp;
                     <a href="#" style="color: red;">Delete</a>
                 </td>
             </tr>
