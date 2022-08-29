@@ -1,7 +1,18 @@
 @extends('layouts.admin')
 @section('content')
     <h2>Categories list</h2>
+    <div class="row">
+        <div class="col-12">
+            <a href="{{route('admin.categories.create')}}"
+               style="float:right"
+               class="btn btn-primary">
+                Add category
+            </a>
+        </div>
+    </div>
+    <br>
     <div class="table-responsive">
+        @include('inc.message')
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -30,5 +41,4 @@
             </tbody>
         </table>
     </div>
-    <a href="{{route('admin.categories.create')}}" style="float:right" class="btn btn-primary">Add category</a>
 @endsection

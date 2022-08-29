@@ -12,15 +12,16 @@ class Category extends Model
 
     protected $table = "categories";
 
-    private static $selectedFields = ['id', 'title', 'description', 'created_at'];
+    public static $selectedFields = [
+        'id',
+        'title',
+        'description',
+        'created_at'
+    ];
 
-    public function getCategories()
-    {
-        return DB::table($this->table)->get(self::$selectedFields);
-    }
+    protected $fillable = [
+        'title',
+        'description'
+    ];
 
-    public function getCategoryById(int $id)
-    {
-        return DB::table($this->table)->find($id, self::$selectedFields);
-    }
 }

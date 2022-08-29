@@ -1,6 +1,16 @@
 @extends('layouts.admin')
 @section('content')
     <h2>News list</h2>
+    <div class="row">
+        <div class="col-12">
+            <a href="{{route('admin.news.create')}}"
+               style="float:right"
+               class="btn btn-primary">
+                Add news
+            </a>
+        </div>
+    </div>
+    <br>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
