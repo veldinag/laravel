@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
 
 class News extends Model
@@ -31,6 +33,9 @@ class News extends Model
     ];
 
     protected $fillable = [
+        'category_id',
+        'source_id',
+        'slug',
         'title',
         'slug',
         'author',
@@ -39,4 +44,20 @@ class News extends Model
         'text',
         'description'
     ];
+
+    /* protected $casts = [
+        'is_admin' => 'bool'
+    ];*/
+
+    public function scopeOrder(Builder $query): Builder
+    {
+        return $query->orderBy('news.id');
+    }
+
+    // Relations
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

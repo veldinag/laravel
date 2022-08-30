@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::select(Category::$selectedFields)->get();
+        $categories = Category::select(Category::$selectedFields)->paginate();
         return view('admin.categories.index', [
             'categories' => $categories
         ]);

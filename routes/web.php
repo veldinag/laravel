@@ -38,3 +38,9 @@ Route::get('/newslist/{cat_id}', [NewsController::class, 'index'])
 Route::get('/news/{id}', [NewsController::class, 'show'])
     ->where('id', '\d+')
     ->name('news.show');
+
+Route::get('/collections', function() {
+    $names = ['Anna', 'John', 'Kim', 'Mike', 'Drake', 'Lili'];
+    $collection = collect($names);
+    dd($collection);
+});

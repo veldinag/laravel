@@ -5,6 +5,7 @@
         <h2>Edit news</h2>
         <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}">
             @csrf
+            @method('put')
             <div class="form-group">
                 <label for="category_id">Category</label>
                 <select class="form-control" name="category_id" id="category_id">
@@ -12,6 +13,17 @@
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" @if($news->category_id === $category->id) selected @endif>
                             {{ $category->title }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="source_id">Source</label>
+                <select class="form-control" name="source_id" id="source_id">
+                    <option value="0">select</option>
+                    @foreach($sources as $source)
+                        <option value="{{ $source->id }}" @if($news->source_id === $source->id) selected @endif>
+                            {{ $source->name }}
                         </option>
                     @endforeach
                 </select>

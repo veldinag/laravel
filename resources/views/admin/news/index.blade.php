@@ -12,6 +12,7 @@
     </div>
     <br>
     <div class="table-responsive">
+        @include('inc.message')
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -30,7 +31,7 @@
                 <td>{{$news->id}}</td>
                 <td>{{$news->title}}</td>
                 <td>{{$news->author}}</td>
-                <td>{{$news->category}}</td>
+                <td>{{$news->category->title}}</td>
                 <td>{{$news->status}}</td>
                 <td>{{date('d.m.Y m:H', strtotime($news->created_at))}}</td>
                 <td>
@@ -45,5 +46,6 @@
             @endforelse
             </tbody>
         </table>
+        {{ $newsList->links() }}
     </div>
 @endsection

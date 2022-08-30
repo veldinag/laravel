@@ -17,6 +17,17 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="source_id">Source</label>
+                <select class="form-control" name="source_id" id="source_id">
+                    <option value="0">select</option>
+                    @foreach($sources as $source)
+                        <option value="{{ $source->id }}" @if(old('source_id') === $source->id) selected @endif>
+                            {{ $source->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
             </div>
