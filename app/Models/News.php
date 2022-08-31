@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
 
 class News extends Model
@@ -16,7 +18,7 @@ class News extends Model
 
     protected $table = "news";
 
-    private static $selectedFields = [
+    public static $selectedFields = [
         'news.id as id',
         'category_id',
         'categories.title as category',
@@ -30,28 +32,32 @@ class News extends Model
         'news.created_at as created_at'
     ];
 
-    public function getNews()
+    protected $fillable = [
+        'category_id',
+        'source_id',
+        'slug',
+        'title',
+        'slug',
+        'author',
+        'status',
+        'image',
+        'text',
+        'description'
+    ];
+
+    /* protected $casts = [
+        'is_admin' => 'bool'
+    ];*/
+
+    public function scopeOrder(Builder $query): Builder
     {
-        return DB::table($this->table)
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->orderBy('news.id')
-            ->get(self::$selectedFields);
+        return $query->orderBy('news.id');
     }
 
-    public function getNewsById($id)
-    {
-        return DB::table($this->table)
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->where('news.id', '=', $id)
-            ->get(self::$selectedFields);
-    }
+    // Relations
 
-    public function getNewsByCategory($id)
+    public function category(): BelongsTo
     {
-        return DB::table($this->table)
-            ->join('categories', 'news.category_id', '=', 'categories.id')
-            ->where('category_id', $id)
-            ->orderBy('news.id')
-            ->get(self::$selectedFields);
+        return $this->belongsTo(Category::class);
     }
 }

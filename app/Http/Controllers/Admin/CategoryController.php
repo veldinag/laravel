@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = app(Category::class)->getCategories();
+        $categories = Category::select(Category::$selectedFields)->paginate();
         return view('admin.categories.index', [
             'categories' => $categories
         ]);
@@ -42,7 +42,17 @@ class CategoryController extends Controller
         $request->validate([
            'title' => ['required', 'string', 'min:5', 'max:255']
         ]);
-        return response()->json($request->only(['title', 'description']));
+
+        $category = new Category(
+            $request->only(['title', 'description'])
+        );
+
+        if ($category->save()) {
+            return redirect()->route('admin.categories.index')
+                ->with('success', 'Category added successfully');
+        }
+
+        return back()->with('error', 'Error adding a category');
     }
 
     /**
@@ -62,31 +72,46 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Category $category)
     {
-        return view('admin.categories.edit');
+        return view('admin.categories.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+       $category->title = $request->input('title');
+       $category->description = $request->input('description');
+
+        if ($category->save()) {
+            return redirect()->route('admin.categories.index')
+                ->with('success', 'Category updated successfully');
+        }
+
+        return back()->with('error', 'Error updating a category');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        if ($category->delete()) {
+            return redirect()->route('admin.categories.index')
+                ->with('success', 'Category deleted successfully');
+        }
+
+        return back()->with('error', 'Error deleting a category');
     }
 }
