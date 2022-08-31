@@ -34,14 +34,18 @@
                 <td>{{$news->category->title}}</td>
                 <td>{{$news->status}}</td>
                 <td>{{date('d.m.Y m:H', strtotime($news->created_at))}}</td>
-                <td>
-                    <a href="{{route('admin.news.edit', ['news'=>$news->id])}}">Edit</a>&nbsp;
-                    <a href="#" style="color: red;">Delete</a>
+                <td class="btn-group btn-group-sm" role="group" aria-label="Action buttons">
+                    <a class="btn btn-outline-secondary btn-sm" href="{{route('admin.news.edit', ['news'=>$news])}}">Edit</a>
+                    <form method="POST" action="{{route('admin.news.destroy', ['news'=>$news->id])}}">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-outline-secondary btn-sm" type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
             @empty
                 <tr>
-                    <td colspan="6">No news</td>
+                    <td colspan="7">No news</td>
                 </tr>
             @endforelse
             </tbody>
