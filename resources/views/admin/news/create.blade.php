@@ -3,6 +3,9 @@
     <div class="offset-2 col-8">
         <br>
         <h2>Add news</h2>
+
+        @include('inc.message')
+
         <form method="post" action="{{ route('admin.news.store') }}">
             @csrf
             <div class="form-group">

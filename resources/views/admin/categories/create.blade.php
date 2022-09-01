@@ -4,11 +4,7 @@
         <br>
         <h2>Add category</h2>
 
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                @include('inc.message', ['message' => $error])
-            @endforeach
-        @endif
+        @include('inc.message')
 
         <form method="post" action="{{route('admin.categories.store', ['status=1'])}}">
             @csrf

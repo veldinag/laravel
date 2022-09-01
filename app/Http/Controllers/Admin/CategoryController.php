@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Categories\CreateRequest;
+use App\Http\Requests\Categories\EditRequest;
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $categories = Category::select(Category::$selectedFields)->paginate();
         return view('admin.categories.index', [
@@ -24,9 +28,9 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('admin.categories.create');
     }
@@ -34,17 +38,13 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request): RedirectResponse
     {
-        $request->validate([
-           'title' => ['required', 'string', 'min:5', 'max:255']
-        ]);
-
         $category = new Category(
-            $request->only(['title', 'description'])
+            $request->validated()
         );
 
         if ($category->save()) {
@@ -69,10 +69,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category $category
+     * @return View
      */
-    public function edit(Category $category)
+    public function edit(Category $category): View
     {
         return view('admin.categories.edit', [
             'category' => $category
@@ -82,14 +82,13 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  EditRequest $request
      * @param  Category $category
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(EditRequest $request, Category $category): RedirectResponse
     {
-       $category->title = $request->input('title');
-       $category->description = $request->input('description');
+        $category = $category->fill($request->validated());
 
         if ($category->save()) {
             return redirect()->route('admin.categories.index')
@@ -103,9 +102,9 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Category $category
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
         if ($category->delete()) {
             return redirect()->route('admin.categories.index')
