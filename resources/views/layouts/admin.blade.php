@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Dashboard Template · Bootstrap v5.2</title>
 
@@ -82,5 +83,6 @@
 <script src="{{asset('assets/js/feather.min.js')}}"></script>
 <script src="{{asset('assets/js/Chart.min.js')}}" ></script>
 <script src="{{asset('assets/js/dashboard.js')}}"></script>
+@stack('js')
 </body>
 </html>

@@ -10,8 +10,8 @@ use App\Models\News;
 use App\Models\Source;
 use App\Queries\NewsQueryBuilder;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use function response;
 
 class NewsController extends Controller
 {
@@ -56,10 +56,10 @@ class NewsController extends Controller
         );
         if($news) {
             return redirect()->route('admin.news.index')
-                ->with('success', 'News added successfully');
+                ->with('success', __('messages.admin.news.create.success'));
         }
 
-        return back()->with('error', 'Error adding a news');
+        return back()->with('error', __('messages.admin.news.create.fail'));
     }
 
     /**
@@ -76,7 +76,7 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  News $news
      * @return View
      */
     public function edit(News $news): View
@@ -102,25 +102,30 @@ class NewsController extends Controller
     {
         if($builder->update($news, $request->validated())) {
             return redirect()->route('admin.news.index')
-                ->with('success', 'News updated successfully');
+                ->with('success', __('messages.admin.news.update.success'));
         }
 
-        return back()->with('error', 'Error updating a news');
+        return back()->with('error', __('messages.admin.news.update.fail'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  News $news
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function destroy(News $news): RedirectResponse
+    public function destroy(News $news): JsonResponse
     {
-        if($news->delete()) {
-            return redirect()->route('admin.news.index')
-                ->with('success', 'News deleted successfully');
-        }
+        try {
+            $deleted = $news->delete();
+            if($deleted === false) {
+                return response()->json('error', 400);
+            }
 
-        return back()->with('error', 'Error deleting a news');
+            return response()->json('ok');
+        } catch(\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json('error', 400);
+        }
     }
 }

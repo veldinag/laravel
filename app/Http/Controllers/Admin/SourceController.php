@@ -105,11 +105,16 @@ class SourceController extends Controller
      */
     public function destroy(Source $source)
     {
-        if($source->delete()) {
-            return redirect()->route('admin.sources.index')
-                ->with('success', 'Source deleted successfully');
-        }
+        try {
+            $deleted = $source->delete();
+            if($deleted === false) {
+                return response()->json('error', 400);
+            }
 
-        return back()->with('error', 'Error deleting a source');
+            return response()->json('ok');
+        } catch(\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json('error', 400);
+        }
     }
 }

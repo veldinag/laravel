@@ -7,7 +7,6 @@ use App\Http\Requests\Categories\CreateRequest;
 use App\Http\Requests\Categories\EditRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -49,10 +48,10 @@ class CategoryController extends Controller
 
         if ($category->save()) {
             return redirect()->route('admin.categories.index')
-                ->with('success', 'Category added successfully');
+                ->with('success', __('messages.admin.categories.create.success'));
         }
 
-        return back()->with('error', 'Error adding a category');
+        return back()->with('error', __('messages.admin.categories.create.fail'));
     }
 
     /**
@@ -92,10 +91,10 @@ class CategoryController extends Controller
 
         if ($category->save()) {
             return redirect()->route('admin.categories.index')
-                ->with('success', 'Category updated successfully');
+                ->with('success', __('messages.admin.categories.update.success'));
         }
 
-        return back()->with('error', 'Error updating a category');
+        return back()->with('error', __('messages.admin.categories.update.fail'));
     }
 
     /**
@@ -106,11 +105,16 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): RedirectResponse
     {
-        if ($category->delete()) {
-            return redirect()->route('admin.categories.index')
-                ->with('success', 'Category deleted successfully');
-        }
+        try {
+            $deleted = $category->delete();
+            if($deleted === false) {
+                return response()->json('error', 400);
+            }
 
-        return back()->with('error', 'Error deleting a category');
+            return response()->json('ok');
+        } catch(\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json('error', 400);
+        }
     }
 }

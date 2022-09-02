@@ -28,13 +28,10 @@
                     <td>{{$category->id}}</td>
                     <td>{{$category->title}}</td>
                     <td>{{date('d.m.Y m:H', strtotime($category->created_at))}}</td>
-                    <td class="btn-group btn-group-sm" role="group" aria-label="Action buttons">
-                        <a class="btn btn-outline-secondary btn-sm" href="{{route('admin.categories.edit', ['category'=>$category])}}">Edit</a>
-                        <form method="POST" action="{{route('admin.categories.destroy', ['category'=>$category])}}">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-outline-secondary btn-sm" type="submit">Delete</button>
-                        </form>
+                    <td>
+                        <a href="{{route('admin.categories.edit', ['category'=>$category])}}">Edit</a>
+                        <a class="delete" href="javascript:;" rel="{{ $category->id }}" style="color:red;">Delete</a>
+
                     </td>
                 </tr>
             @empty
@@ -47,3 +44,35 @@
         {{ $categories->links() }}
     </div>
 @endsection
+
+@push('js')
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            let elements = document.querySelectorAll('.delete');
+            elements.forEach((e, k) => {
+                e.addEventListener("click", () => {
+                    const id = e.getAttribute('rel');
+                    if(confirm(`Подтверждаете удаление записи с ID = ${id}`)) {
+                        send(`/admin/categories/${id}`).then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        alert("Удаление отменено");
+                    }
+                });
+            });
+        });
+
+        async function send(url) {
+            let response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            });
+            let result = await response.json();
+            return result.ok;
+        }
+
+    </script>
+@endpush
