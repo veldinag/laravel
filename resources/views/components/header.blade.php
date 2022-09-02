@@ -26,12 +26,6 @@
                             <li class="propClone">
                                 <a class="inner-link" href="{{ route('categories.index') }}">CATEGORIES</a>
                             </li>
-                            <li class="propClone">
-                                <a class="inner-link" href="{{route('feedback.index')}}">FEEDBACK</a>
-                            </li>
-                            <li class="propClone">
-                                <a class="inner-link" href="{{route('unloadingorder.create')}}">UNLOADING ORDER</a>
-                            </li>
                         </ul>
                     </div>
                 </div>

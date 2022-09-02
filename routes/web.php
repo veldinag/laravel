@@ -29,10 +29,6 @@ Route::get('/greeting', [GreetingController::class, 'index'])
 Route::get('/categories', [CategoryController::class, 'index'])
     ->name('categories.index');
 
-Route::resource('/feedback', FeedbackController::class);
-
-Route::resource('/unloadingorder', UnloadingOrderController::class);
-
 Route::get('/newslist/{cat_id}', [NewsController::class, 'index'])
     ->where('cat_id', '\d+')
     ->name('newslist.index');
