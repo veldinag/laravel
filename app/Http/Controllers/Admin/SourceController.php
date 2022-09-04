@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Sources\CreateRequest;
+use App\Http\Requests\Sources\EditRequest;
 use App\Models\Source;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SourceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $sources = Source::select(Source::$selectedFields)->paginate();
         return view('admin.sources.index', [
@@ -24,9 +28,9 @@ class SourceController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('admin.sources.create');
     }
@@ -34,15 +38,11 @@ class SourceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  CreateRequest  $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:5', 'max:255']
-        ]);
-
         $source = new Source(
             $request->only(['name', 'link'])
         );
@@ -59,7 +59,7 @@ class SourceController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -70,9 +70,9 @@ class SourceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  Source $source
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return View
      */
-    public function edit(Source $source)
+    public function edit(Source $source): View
     {
         return view('admin.sources.edit', ['source'=>$source]);
     }
@@ -80,11 +80,11 @@ class SourceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  EditRequest  $request
      * @param  Source $source
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function update(Request $request, Source $source)
+    public function update(EditRequest $request, Source $source): RedirectResponse
     {
         $source->name = $request->input('name');
         $source->link = $request->input('link');
@@ -101,15 +101,20 @@ class SourceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Source $source
-     * @return \Illuminate\Http\RedirectResponse
+     * @return JsonResponse
      */
-    public function destroy(Source $source)
+    public function destroy(Source $source): JsonResponse
     {
-        if($source->delete()) {
-            return redirect()->route('admin.sources.index')
-                ->with('success', 'Source deleted successfully');
-        }
+        try {
+            $deleted = $source->delete();
+            if($deleted === false) {
+                return response()->json('error', 400);
+            }
 
-        return back()->with('error', 'Error deleting a source');
+            return response()->json('ok');
+        } catch(\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json('error', 400);
+        }
     }
 }

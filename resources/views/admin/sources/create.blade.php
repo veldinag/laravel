@@ -3,11 +3,8 @@
     <div class="offset-2 col-8">
         <br>
         <h2>Add source</h2>
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                @include('inc.message', ['message' => $error])
-            @endforeach
-        @endif
+
+        @include('inc.message')
 
         <form method="post" action="{{route('admin.sources.store')}}">
             @csrf

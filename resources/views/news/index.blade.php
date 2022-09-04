@@ -29,7 +29,7 @@
                         <a href="{{ route('news.show', ['id' => $news->id]) }}"><img src="{{asset('assets/img/spa-blog-img0'.$r.'.jpeg')}}" data-img-size="(W)800px X (H)507px" alt=""></a>
                     </div>
                     <div class="post-details no-margin-lr no-margin-bottom">
-                        <a href="{{ route('newslist.index', ['cat_id' => $news->category_id]) }}" class="tz-text btn btn-very-small bg-cyan border-radius-0 text-white alt-font margin-nine-bottom font-weight-500">{{ $news->category }}</a>
+                        <a href="{{ route('newslist.index', ['cat_id' => $news->category_id]) }}" class="tz-text btn btn-very-small bg-cyan border-radius-0 text-white alt-font margin-nine-bottom font-weight-500">{{ $news->category->title }}</a>
                         <a href="{{ route('news.show', ['id' => $news->id]) }}" class="tz-text text-dark-gray text-medium alt-font font-weight-600 display-block margin-four-bottom md-text-medium">{{ $news->title }}</a>
                         <div class="text-medium tz-text"><p>{!! $news->description !!}</p></div>
                         <div class="separator-line-full bg-middle-gray margin-ten-bottom tz-background-color"></div>
@@ -48,8 +48,10 @@
             @empty
                 <h2>No news</h2>
             @endforelse
-
+            {{ $newsList->links() }}
         </div>
+
     </section>
+
 
 @endsection

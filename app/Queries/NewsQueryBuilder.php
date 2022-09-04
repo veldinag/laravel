@@ -6,8 +6,7 @@ namespace App\Queries;
 
 use App\Models\News;
 use Illuminate\Database\Eloquent\Builder;
-use phpDocumentor\Reflection\Types\Boolean;
-use Ramsey\Collection\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class NewsQueryBuilder
 {
@@ -18,12 +17,34 @@ final class NewsQueryBuilder
         $this->model = News::query();
     }
 
-    public function getNews(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function getNews(string $page = 'admin'): LengthAwarePaginator
     {
+        if ($page === 'admin') {
+            $items_on_page = 'pagination.admin.news';
+        } else {
+            $items_on_page = 'pagination.news';
+        }
         return $this->model
         ->with('category')
             ->order()
-                ->paginate(config('pagination.admin.news'));
+                ->paginate(config($items_on_page));
+    }
+
+    public function getNewsByCategoryId($id): LengthAwarePaginator
+    {
+        return $this->model
+            ->with('category')
+                ->where('category_id', $id)
+                    ->order()
+                        ->paginate(config('pagination.news'));
+    }
+
+    public function getNewsById($id)
+    {
+        return $this->model
+            ->with('category')
+                ->where('id', $id)
+                    ->get();
     }
 
     public function create(array $data): News|bool

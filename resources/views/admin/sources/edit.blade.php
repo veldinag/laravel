@@ -3,6 +3,9 @@
     <div class="offset-2 col-8">
         <br>
         <h2>Edit source</h2>
+
+        @include('inc.message')
+
         <form method="post" action="{{route('admin.sources.update', ['source' => $source])}}">
             @csrf
             @method('put')

@@ -12,7 +12,9 @@
     </div>
     <br>
     <div class="table-responsive">
+
         @include('inc.message')
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -30,13 +32,9 @@
                     <td>{{ $source->name }}</td>
                     <td>{{ $source->link }}</td>
                     <td>{{date('d.m.Y m:H', strtotime($source->created_at))}}</td>
-                    <td class="btn-group btn-group-sm" role="group" aria-label="Action buttons">
-                        <a class="btn btn-outline-secondary btn-sm" href="{{route('admin.sources.edit', ['source'=>$source])}}">Edit</a>
-                        <form method="POST" action="{{route('admin.sources.destroy', ['source'=>$source])}}">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-outline-secondary btn-sm" type="submit">Delete</button>
-                        </form>
+                    <td>
+                        <a href="{{route('admin.sources.edit', ['source'=>$source])}}">Edit</a>
+                        <a class="delete" href="javascript:;" rel="{{ $source->id }}" style="color:red;">Delete</a>
                     </td>
                 </tr>
             @empty
@@ -49,3 +47,35 @@
         {{ $sources->links() }}
     </div>
 @endsection
+
+@push('js')
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            let elements = document.querySelectorAll('.delete');
+            elements.forEach((e, k) => {
+                e.addEventListener("click", () => {
+                    const id = e.getAttribute('rel');
+                    if(confirm(`Подтверждаете удаление записи с ID = ${id}`)) {
+                        send(`/admin/sources/${id}`).then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        alert("Удаление отменено");
+                    }
+                });
+            });
+        });
+
+        async function send(url) {
+            let response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            });
+            let result = await response.json();
+            return result.ok;
+        }
+
+    </script>
+@endpush

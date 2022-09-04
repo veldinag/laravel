@@ -23,7 +23,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <ul class="list-style-none">
                                         <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Author: {{ $news->author }}</span></li>
-                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Category: {{ $news->category }}</span></li>
+                                        <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Category: {{ $news->category->title }}</span></li>
                                         <li class="position-relative padding-left-30px line-height-34 text-medium"><i class="fa fa-check text-dark-gray tz-icon-color position-left position-absolute icon-extra-small line-height-34"></i><span class="tz-text">Created at: {{ date('d.m.Y m:H', strtotime($news->created_at)) }}</span></li>
                                     </ul>
                                 </div>

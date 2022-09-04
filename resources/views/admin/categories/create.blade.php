@@ -4,21 +4,19 @@
         <br>
         <h2>Add category</h2>
 
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                @include('inc.message', ['message' => $error])
-            @endforeach
-        @endif
+        @include('inc.message')
 
         <form method="post" action="{{route('admin.categories.store', ['status=1'])}}">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{old('title')}}">
+                @error('title') <span style="color:red;">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="description">{!!old('description')!!}</textarea>
+                @error('description') <span style="color:red;">{{ $message }}</span> @enderror
             </div><br>
             <button class="btn btn-success" type="submit">Add category</button>
         </form>
