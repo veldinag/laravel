@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SourceController as AdminSourceController;
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/account', AccountController::class)->name('account');
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('news', AdminNewsController::class);
         Route::resource('sources', AdminSourceController::class);
+        Route::resource('users', AdminUserController::class);
     });
 });
 

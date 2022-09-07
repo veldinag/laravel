@@ -20,14 +20,21 @@
                     Sources
                 </a>
             </li>
-
-
             <li class="nav-item">
                 <a class="nav-link @if(request()->routeIs('admin.news.*')) active @endif" href="{{route('admin.news.index')}}">
                     <span data-feather="file" class="align-text-bottom"></span>
                     News
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.users.*')) active @endif" href="{{route('admin.users.index')}}">
+                    <span data-feather="user" class="align-text-bottom"></span>
+                    Users
+                </a>
+            </li>
+
+
         </ul>
     </div>
 </nav>
