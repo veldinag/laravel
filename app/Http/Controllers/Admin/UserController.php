@@ -104,11 +104,21 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(User $user): RedirectResponse
     {
-        //
+        try {
+            $deleted = $user->delete();
+            if($deleted === false) {
+                return response()->json('error', 400);
+            }
+
+            return response()->json('ok');
+        } catch(\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json('error', 400);
+        }
     }
 }
