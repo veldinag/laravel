@@ -8,6 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <a href="{{ route('social.auth.redirect', ['driver' => 'vkontakte']) }}"><strong>Login by VK</strong></a>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
