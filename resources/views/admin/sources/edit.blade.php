@@ -16,7 +16,19 @@
             <div class="form-group">
                 <label for="link">Link</label>
                 <input type="text" class="form-control" name="link" id="link" value="{{ $source->link }}">
-            </div><br>
+            </div>
+            <div class="form-group">
+                <label for="category_id">Category</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option value="0">select</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" @if($source->category_id === $category->id) selected @endif>
+                            {{ $category->title }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <br>
             <button class="btn btn-success" type="submit">Save</button>
         </form>
     </div>

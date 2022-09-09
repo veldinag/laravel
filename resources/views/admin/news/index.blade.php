@@ -18,7 +18,7 @@
         <table class="table table-striped table-sm">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">№</th>
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Category</th>
@@ -28,9 +28,10 @@
             </tr>
             </thead>
             <tbody>
+            @php $i=1; @endphp
             @forelse($newsList as $news)
             <tr>
-                <td>{{$news->id}}</td>
+                <td>{{ $i++ }}</td>
                 <td>{{$news->title}}</td>
                 <td>{{$news->author}}</td>
                 <td>{{$news->category->title}}</td>

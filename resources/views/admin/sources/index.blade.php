@@ -18,20 +18,21 @@
         <table class="table table-striped table-sm">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">№</th>
                 <th scope="col">Name</th>
                 <th scope="col">Link</th>
-                <th scope="col">Created at</th>
+                <th scope="col">Category</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
+            @php $i=1; @endphp
             @forelse($sources as $source)
                 <tr>
-                    <td>{{ $source->id }}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{{ $source->name }}</td>
                     <td>{{ $source->link }}</td>
-                    <td>{{date('d.m.Y m:H', strtotime($source->created_at))}}</td>
+                    <td>{{ $source->category->title }}</td>
                     <td>
                         <a href="{{route('admin.sources.edit', ['source'=>$source])}}">Edit</a>
                         <a class="delete" href="javascript:;" rel="{{ $source->id }}" style="color:red;">Delete</a>

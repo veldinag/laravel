@@ -10,15 +10,15 @@ use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\ParserController as AdminParserController;
 use App\Http\Controllers\SocialProvidersController;
+use App\Http\Controllers\Admin\ParserController as AdminParserController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/account', AccountController::class)->name('account');
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function() {
         Route::get('/', AdminController::class)
             ->name('index');
-        Route::get('/parser', AdminParserController::class)->name('parser');
+        Route::resource('parser', AdminParserController::class);
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('news', AdminNewsController::class);
         Route::resource('sources', AdminSourceController::class);

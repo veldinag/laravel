@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->text('text')
-                ->after('image')
-                ->nullable();
+        Schema::table('sources', function (Blueprint $table) {
+            $table->foreignId('category_id')
+                ->after('id')
+                ->constrained('categories')
+                ->onDelete('cascade');
         });
     }
 
@@ -27,8 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->dropColumn('text');
+        Schema::table('sources', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('category_id');
         });
     }
 };

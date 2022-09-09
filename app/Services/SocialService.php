@@ -18,7 +18,7 @@ class SocialService Implements Social
             return route('auth.register');
         }
 
-        $user->name = $socialUser->getName();
+        $user->name = $socialUser->getName() ? $socialUser->getName() : $socialUser->getNickname();
         $user->avatar = $socialUser->getAvatar();
 
         if($user->save()) {

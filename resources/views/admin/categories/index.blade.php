@@ -16,16 +16,17 @@
         <table class="table table-striped table-sm">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">№</th>
                 <th scope="col">Title</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
+            @php $i=1; @endphp
             @forelse($categories as $category)
                 <tr>
-                    <td>{{$category->id}}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{{$category->title}}</td>
                     <td>{{date('d.m.Y m:H', strtotime($category->created_at))}}</td>
                     <td>
