@@ -7,6 +7,7 @@ use App\Models\News;
 use App\Models\Source;
 use App\Queries\NewsQueryBuilder;
 use App\Services\Contracts\Parser;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -38,27 +39,22 @@ class ParserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return RedirectResponse
      */
-    public function store(Request $request, Parser $parser, NewsQueryBuilder $builder)
+    public function store(Request $request, Parser $parser, NewsQueryBuilder $builder): RedirectResponse
     {
         $source = Source::find($request->input('source_id'));
         $data = $parser->setLink($source['link'])->getParseData();
         $news = $data['news'];
-        foreach ($news as $item) {
-            $builder->create([
-                'category_id' => $source['category_id'],
-                'source_id' => $source['id'],
-                'title' => $item['title'],
-                'link' => $item['link'],
-                'description' => $item['description'],
-                'created_at' => $item['pubDate']
-            ]);
+        $news_added = $builder->addNews($news, $source['category_id'], $source['id']);
+        if ($news_added > 0) {
+            return redirect()->route('admin.parser.index', )
+                ->with('success', __('messages.admin.parser.index.success', ['count_news' => $news_added]));
         }
-        dd($data);
+        return redirect()->route('admin.parser.index', )
+            ->with('error', __('messages.admin.parser.index.fail'));
     }
-
     /**
      * Display the specified resource.
      *

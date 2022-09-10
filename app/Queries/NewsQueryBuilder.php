@@ -47,6 +47,48 @@ final class NewsQueryBuilder
                     ->get();
     }
 
+    public function getNewsIdByLink(string $link)
+    {
+        return $this->model
+            ->where('link', $link)
+                ->value('id');
+    }
+
+    public function addNews(array $news, int $category_id, int $source_id)
+    {
+        $count_news = 0;
+        foreach ($news as $item) {
+            if($this->getNewsIdByLink($item['link']) > 0) {
+                break;
+            } else {
+                $categoriesBuilder = new CategoriesQueryBuilder;
+                if ($item['category'] !== null) {
+                    $cat_id = $categoriesBuilder->getCategoryIdByTitle($item['category']);
+                    if($cat_id > 0) {
+                        $category_id = $cat_id;
+                    } else {
+                        $data = [
+                            'title' => $item['category'],
+                            'description' => $item['category']
+                        ];
+                        $category = $categoriesBuilder->create($data);
+                        $category_id = $category['id'];
+                    }
+                }
+                $this->create([
+                    'category_id' => $category_id,
+                    'source_id' => $source_id,
+                    'title' => $item['title'],
+                    'link' => $item['link'],
+                    'description' => $item['description'],
+                    'created_at' => $item['pubDate']
+                ]);
+                $count_news++;
+            }
+        }
+        return $count_news;
+    }
+
     public function create(array $data): News|bool
     {
         return News::create($data);

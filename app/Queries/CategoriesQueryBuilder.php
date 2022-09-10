@@ -18,4 +18,15 @@ class CategoriesQueryBuilder
     {
         return $this->model->get();
     }
+
+    public function create(array $data): Category|bool
+    {
+        return Category::create($data);
+    }
+    public function getCategoryIdByTitle(string $title): int|null
+    {
+        return $this->model
+            ->where('title', $title)
+                ->value('id');
+    }
 }
