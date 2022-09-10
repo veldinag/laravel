@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Sources\CreateRequest;
 use App\Http\Requests\Sources\EditRequest;
+use App\Models\Category;
 use App\Models\Source;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -32,7 +33,10 @@ class SourceController extends Controller
      */
     public function create(): View
     {
-        return view('admin.sources.create');
+        $categories = Category::all();
+        return view('admin.sources.create', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -44,7 +48,7 @@ class SourceController extends Controller
     public function store(CreateRequest $request): RedirectResponse
     {
         $source = new Source(
-            $request->only(['name', 'link'])
+            $request->only(['name', 'link', 'category_id'])
         );
 
         if ($source->save()) {
@@ -74,7 +78,11 @@ class SourceController extends Controller
      */
     public function edit(Source $source): View
     {
-        return view('admin.sources.edit', ['source'=>$source]);
+        $categories = Category::all();
+        return view('admin.sources.edit', [
+            'source' => $source,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -88,6 +96,7 @@ class SourceController extends Controller
     {
         $source->name = $request->input('name');
         $source->link = $request->input('link');
+        $source->category_id = $request->input('category_id');
 
         if ($source->save()) {
             return redirect()->route('admin.sources.index')

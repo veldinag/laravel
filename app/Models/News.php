@@ -41,7 +41,7 @@ class News extends Model
         'author',
         'status',
         'image',
-        'text',
+        'link',
         'description'
     ];
 
@@ -59,5 +59,10 @@ class News extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function source(): BelongsTo
+    {
+        return $this->belongsTo(Source::class);
     }
 }

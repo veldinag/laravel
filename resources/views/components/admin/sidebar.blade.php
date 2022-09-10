@@ -8,6 +8,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.users.*')) active @endif" href="{{route('admin.users.index')}}">
+                    <span data-feather="user" class="align-text-bottom"></span>
+                    Users
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link @if(request()->routeIs('admin.categories.*')) active @endif" href="{{route('admin.categories.index')}}">
                     <span data-feather="folder" class="align-text-bottom"></span>
                     Categories
@@ -26,15 +32,12 @@
                     News
                 </a>
             </li>
-
             <li class="nav-item">
-                <a class="nav-link @if(request()->routeIs('admin.users.*')) active @endif" href="{{route('admin.users.index')}}">
-                    <span data-feather="user" class="align-text-bottom"></span>
-                    Users
+                <a class="nav-link @if(request()->routeIs('admin.parser.*')) active @endif" href="{{route('admin.parser.index')}}">
+                    <span data-feather="download-cloud" class="align-text-bottom"></span>
+                    Parser
                 </a>
             </li>
-
-
         </ul>
     </div>
 </nav>

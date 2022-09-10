@@ -12,7 +12,7 @@
         <table class="table table-striped table-sm">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">№</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
@@ -20,9 +20,10 @@
             </tr>
             </thead>
             <tbody>
+            @php $i=1; @endphp
             @forelse($users as $user)
                 <tr>
-                    <td>{{ $user->id }}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>

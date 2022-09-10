@@ -11,12 +11,10 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->text('text')
-                ->after('image')
-                ->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->timestamp('last_login_at')->nullable();
         });
     }
 
@@ -25,10 +23,10 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->dropColumn('text');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('last_login_at');
         });
     }
 };
