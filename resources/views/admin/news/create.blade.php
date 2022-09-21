@@ -55,8 +55,8 @@
                 <textarea class="form-control" name="description" id="description">{{ old('description') }}</textarea>
             </div>
             <div class="form-group">
-                <label for="text">Text</label>
-                <textarea class="form-control" name="text" id="text">{{ old('text') }}</textarea>
+                <label for="link">Link</label>
+                <input type="text" class="form-control" name="link" id="link" value="{{ old('link') }}">
             </div>
             <br>
             <button class="btn btn-success" type="submit">Save</button>

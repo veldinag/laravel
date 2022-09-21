@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\ParserController as AdminParserController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/account', AccountController::class)->name('account');
-    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function() {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'/*, 'middleware' => 'is_admin'*/], function() {
         Route::get('/', AdminController::class)
             ->name('index');
         Route::resource('parser', AdminParserController::class);

@@ -182,6 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Orchestra\Parser\XmlServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Package Service Providers...
